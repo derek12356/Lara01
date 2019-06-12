@@ -4,7 +4,7 @@
   <div class="jumbotron">
     <h1>Hello Laravel</h1>
     <p class="lead">
-      This is  <a href="https://learnku.com/courses/laravel-essential-training">Laravel</a> home page
+      This is home page
     </p>
     <p>
       Starts from here
