@@ -10662,8 +10662,40 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+body {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+nav.navbar.navbar-expand-lg {
+  margin-bottom: 20px;
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer img.brand-icon {
+  width: 17px;
+  height: 17px;
 }
 
