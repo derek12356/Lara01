@@ -28,7 +28,7 @@
 
       <hr> 
 
-      <p>Don't have an account？<a href="{{ route('signup') }}">Sign up now!</a></p>
+      <p>Don't have an account？<a href="{{ route('signup') }}">Sign up now </a>!</p>
     </div>
   </div>
 </div>
