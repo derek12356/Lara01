@@ -10725,3 +10725,7 @@ section.user_info h1 {
   border-radius: 50%;
 }
 
+.gravatar_edit .gravatar {
+  max-width: 100px;
+}
+
