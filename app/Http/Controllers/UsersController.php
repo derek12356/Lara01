@@ -22,8 +22,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(User $user)
+    {   
+
+        $this->authorize('destroy',$user);
+
         $users = User::paginate(10);
 
         return view('users.index',compact('users'));
@@ -116,16 +119,20 @@ class UsersController extends Controller
         return redirect()->route('users.show', $user->id);
     }
 
-    
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(User $user){
+
+        $this->authorize('destroy', $user);
+
+        $user->delete();
+
+        session()->flash('success', 'The user has been deleted.');
+
+        return back();
     }
 }
