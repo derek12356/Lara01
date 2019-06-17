@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Mail\Confirmation;
 use App\Models\User;
 use Auth;
+use Illuminate\Http\Request;
+use Mail;
 class UsersController extends Controller
 {
 
     public function __construct(){
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'store', 'index']
+            'except' => ['show', 'create', 'store', 'index', 'confirmEmail']
         ]);
 
         $this->middleware('guest',[
@@ -62,11 +64,11 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        Auth::login($user);
+        Mail::to($user->email)->send(new Confirmation($user));
 
-        session()->flash('success', 'Great! You have signed up successfully.');
+        session()->flash('success', 'A verification link has been sent to your email account.');
 
-        return redirect()->route('users.show',[$user]);
+        return redirect('/');
     }
 
     /**
@@ -134,5 +136,17 @@ class UsersController extends Controller
         session()->flash('success', 'The user has been deleted.');
 
         return back();
+    }
+
+    public function confirmEmail($token){
+        $user = User::where('activation_token', $token)->firstOrFail();
+
+        $user->activated = true;
+        $user->activation_token = null; 
+        $user->save();
+
+        Auth::login($user);
+        session()->flash('success', 'Activation success!');
+        return redirect()->route('users.show', [$user]);
     }
 }
