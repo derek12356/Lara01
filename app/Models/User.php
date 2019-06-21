@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany(Post::class);
     }
+
+    public function feed(){
+        return $this->posts()->orderBy('created_at','desc');
+    }
 }
