@@ -6,4 +6,12 @@
     <h5 class="mt-0 mb-1">{{ $user->name }} <small> / {{ $post->created_at->diffForHumans() }}</small></h5>
     {{ $post->content }}
   </div>
+
+  @can('destroy', $post)
+  <form action="{{ route('posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure to delete.');">
+  	@csrf
+  	{{ method_field('DELETE') }}
+  	<button type="submit" class="btn btn-sm btn-danger">Delete</button>
+  </form>
+  @endcan
 </li>

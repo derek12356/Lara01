@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -90,8 +91,14 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $this->authorize('destroy',$post);
+
+        $post->delete();
+
+        session()->flash('success','The post has been deleted.');
+
+        return redirect()->back();
     }
 }
