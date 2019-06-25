@@ -9,5 +9,5 @@
       {{ method_field('DELETE') }}
       <button type="submit" class="btn btn-sm btn-danger delete-btn">Delete</button>
     </form>
-	@endcan
+@endcan
 </div>

@@ -3,8 +3,8 @@
 @section('content')
   @if(Auth::check())
 
-<div class="row">
-  <div class="col-md-8">
+<div class="row d-flex">
+  <div class="col-md-8 user-post">
     <section>
       @include('shared._post_form')
     </section>
@@ -12,7 +12,7 @@
     <hr>
     @include('shared._feed')
   </div>
-  <aside class="col-md-4">
+  <aside class="col-md-4 user-info">
      @include('shared._user_info', ['user' => Auth::user()])
   </aside>
 </div>
