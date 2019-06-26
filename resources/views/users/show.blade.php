@@ -9,6 +9,11 @@
           @include('shared._user_info', compact('user'))
           <hr>
         </section>
+
+	    @if (Auth::check())
+	      @include('users._follow_form')
+	    @endif
+
         <section>
 	        @if($posts->count()>0)
 	          <ul class="list-unstyled">

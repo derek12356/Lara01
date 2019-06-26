@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Models\User;
 class FollowersTableSeeder extends Seeder
 {
     /**
@@ -11,12 +11,12 @@ class FollowersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::all();
-        $user = $user->first();
+        $users = User::all();
+        $user = $users->first();
         $user_id = $user->id;
 
         $followers = $users->slice(1);
-        $follower_ids = $followrs->pluck('id')->toArray();
+        $follower_ids = $followers->pluck('id')->toArray();
 
         $user->follow($follower_ids);
 
