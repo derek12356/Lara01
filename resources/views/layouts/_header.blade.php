@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container ">
-    <a class="navbar-brand" href="{{ route('home') }}">Weibo App</a>
+    <a class="navbar-brand" href="{{ route('home') }}">@lang('home.app_name')</a>
     <ul class="navbar-nav justify-content-end">
 
       @if (Auth::check())
@@ -25,6 +25,15 @@
           </div>
         </li>
       @else
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="lang_switch" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="img/{{ app()->getLocale() }}.jpg" alt="" style="width: 30px;">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="lang_switch">
+            <a class="dropdown-item" href="locale/en">English</a>
+            <a class="dropdown-item" href="locale/cn">中文</a>
+          </div>
+      </li>
         <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Help</a></li>
         <li class="nav-item" ><a class="nav-link" href="{{ route('login') }}">Login</a></li>
       @endif
