@@ -40,5 +40,5 @@ Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('f
 
 Route::get('/counter', 'APIController@showCounterButton')->name('counter.show');
 Route::get('/api/counter', 'APIController@index')->name('counter.index');
-Route::post('/api/counter', 'APIController@store')->name('counter.store');
+Route::match(['options','post'], '/api/counter', 'APIController@store')->name('counter.store');
 
