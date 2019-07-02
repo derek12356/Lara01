@@ -78,7 +78,8 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
-    {
+    {   
+
         $posts = $user->posts()
                            ->orderBy('created_at', 'desc')
                            ->paginate(10);
@@ -155,12 +156,12 @@ class UsersController extends Controller
     }
 
     public function followings(User $user){
-
+        
         $users = $user->followings()->paginate(15);
 
         $title = $user->name . "'s Followings";
 
-        return view('users.show_follow', compact('users','title'));
+        return view('users.show_follow', compact('users','title','user'));
     }
 
     public function followers(User $user){
@@ -169,6 +170,17 @@ class UsersController extends Controller
 
         $title = $user->name . "'s Followers";
 
-        return view('users.show_follow', compact('users','title'));
+        return view('users.show_follow', compact('users','title', 'user'));
+    }
+
+    public function private_switch(Request $request, User $user){
+        
+        if($request->ajax()){
+
+            $user->is_public = $request->isChecked;
+
+            $user->save();
+
+        }
     }
 }

@@ -34,4 +34,8 @@ class UserPolicy
         return $currentUser->id !== $user->id;
     
     }
+
+    public function view(User $currentUser, User $user){
+        return $user->is_public || $currentUser->id === $user->id;
+    }
 }
