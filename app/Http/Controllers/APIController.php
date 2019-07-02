@@ -42,15 +42,17 @@ class APIController extends Controller
     {   
         if($request->ajax()){
 
-
+            dd('ajax');
             if(Counter::first() == null){
                 $counter = new Counter();
                 $counter->counts = 1;
                 $counter->save();
+                dd($counter.'first');
             }else{
                 $counter = Counter::first();
                 $counter->counts++;
                 $counter->save();
+                dd($counter.'second');
             }
 
         }
