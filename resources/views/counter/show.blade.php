@@ -10,7 +10,8 @@
 <script>
 	$(document).ready(function(){
 
-		$('#confirm').on('click', sendCounter);
+		// $('#confirm').on('click', sendCounter);
+		sendCounter();
 		function sendCounter(){
 			$.ajax({
 				headers: {
