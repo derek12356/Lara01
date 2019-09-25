@@ -15,7 +15,7 @@ class APIController extends Controller
     public function index(Counter $counter)
     {   
 
-        $counts = Counter::first()->counts;
+        $counts = Counter::first();
 
         return view('counter.index', compact('counts'));
     }
@@ -44,10 +44,12 @@ class APIController extends Controller
             if(Counter::first() == null){
                 $counter = new Counter();
                 $counter->counts = 1;
+                $counter->updated = $request->dateTime;
                 $counter->save();
             }else{
                 $counter = Counter::first();
                 $counter->counts++;
+                $counter->updated = $request->dateTime;
                 $counter->save();
             }
 

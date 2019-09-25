@@ -8,6 +8,7 @@
     <ul class="navbar-nav ml-auto">
       @if (Auth::check())
         @if(Auth::user()->is_admin)
+        <li class="nav-item"><a class="nav-link" href="{{ route('counter.index')}}">Stats</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('users.index')}}">User List</a></li>
         @endif
         <li class="nav-item dropdown">

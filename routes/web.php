@@ -39,5 +39,5 @@ Route::post('/users/followers/{user}', 'FollowersController@store')->name('follo
 Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');
 Route::post('/users/private_switch/{user}', 'UsersController@private_switch')->name('users.private_switch');
 Route::get('/counter', 'APIController@showCounterButton')->name('counter.show');
-Route::get('/api/counter', 'APIController@index')->name('counter.index');
+Route::get('/api/counter', 'APIController@index')->name('counter.index')->middleware('auth');
 Route::match(['options','post'], '/api/counter', 'APIController@store')->name('counter.store');

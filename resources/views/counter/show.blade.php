@@ -13,13 +13,18 @@
 		// $('#confirm').on('click', sendCounter);
 		sendCounter();
 		function sendCounter(){
+			var today = new Date();
+			var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			var dateTime = date+' '+time;
 			$.ajax({
 				headers: {
 				    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				  },
 				url: '/api/counter',
 				data:{
-					'counter' : 1
+					'counter' : 1,
+					'dateTime' : dateTime
 				},
 				type: 'POST',
 				success:function(data){
